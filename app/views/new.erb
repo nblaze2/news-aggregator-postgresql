@@ -1,0 +1,24 @@
+<div class="submission_page">
+    <h1>Slacker News Aggregator</h1>
+    <h3>Submit a New News Article</h3>
+
+    <form action="/articles" method="post">
+      <div>
+        <label for="title">Title:</label>
+        <input value="<%= @title %>" type="text" id="title" name="title" />
+        <span class="error-message"><%= @error ? @error[:title] : "" %></span>
+      </div>
+      <div>
+        <label for="url">URL:</label>
+        <input value="<%= @url %>" type="url" id="url" name="url" />
+        <span class="error-message"><%= @error ? @error[:url] : "" %></span>
+      </div>
+      <div>
+        <label for="description">Description:</label>
+        <input value="<%= @description %>" id="description" name="description"></input>
+        <span class="error-message"><%= @error ? @error[:description] : "" %></span>
+      </div>
+      <input type="submit" value="Submit">
+    </form>
+  <a href="/articles">Back to List Slacker New News</a>
+  </div>
