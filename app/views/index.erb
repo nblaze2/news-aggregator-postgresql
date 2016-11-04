@@ -3,7 +3,7 @@
     <ul>
       <% @articles.each do |article| %>
         <li>
-          <strong><%= article["title"] %></strong> - <a href="<%= article["url"] %>" target="_blank"><%= article["url"] %></a> <strong>Description: </strong><%= article["description"] %>
+          <strong><%= article.title %></strong> - <a href="<%= article.url %>" target="_blank"><%= article.url %></a> <strong>Description: </strong><%= article.description %>
         </li>
       <% end %>
     </ul>

@@ -6,17 +6,17 @@
       <div>
         <label for="title">Title:</label>
         <input value="<%= @title %>" type="text" id="title" name="title" />
-        <span class="error-message"><%= @error ? @error[:title] : "" %></span>
+        <span class="error-message"><%= @errors ? @errors[:title] : "" %></span>
       </div>
       <div>
         <label for="url">URL:</label>
         <input value="<%= @url %>" type="url" id="url" name="url" />
-        <span class="error-message"><%= @error ? @error[:url] : "" %></span>
+        <span class="error-message"><%= @errors ? @errors[:url] : "" %></span>
       </div>
       <div>
         <label for="description">Description:</label>
         <input value="<%= @description %>" id="description" name="description"></input>
-        <span class="error-message"><%= @error ? @error[:description] : "" %></span>
+        <span class="error-message"><%= @errors ? @errors[:description] : "" %></span>
       </div>
       <input type="submit" value="Submit">
     </form>

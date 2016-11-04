@@ -99,8 +99,8 @@ describe Article do
   end
 
   describe "#errors" do
-    it "should return an empty array for a newly initialized object" do
-      expect(article.errors).to eq([])
+    it "should return an empty hash for a newly initialized object" do
+      expect(article.errors).to eq({})
     end
   end
 
@@ -112,7 +112,7 @@ describe Article do
 
       it "should not add any error messages" do
         article.valid?
-        expect(article.errors).to eq([])
+        expect(article.errors).to eq({})
       end
     end
 
@@ -156,12 +156,14 @@ describe Article do
 
       it "should add an error message if any of the attributes are blank" do
         article_with_blank_attributes.valid?
-        expect(article_with_blank_attributes.errors).to eq([missing_fields_message])
+        expect(article_with_blank_attributes.errors[:title]).to eq(missing_fields_message)
+        expect(article_with_blank_attributes.errors[:url]).to eq(missing_fields_message)
+        expect(article_with_blank_attributes.errors[:description]).to eq(missing_fields_message)
       end
 
       it "should add an error message if the url is invalid" do
         article_with_invalid_url.valid?
-        expect(article_with_invalid_url.errors).to eq([invalid_url_message])
+        expect(article_with_invalid_url.errors[:url]).to eq(invalid_url_message)
       end
 
       it "should add an error message if there is a duplicate article" do
@@ -175,22 +177,18 @@ describe Article do
         end
 
         article.valid?
-        expect(article.errors).to eq([url_already_exists_message])
+        expect(article.errors[:url]).to eq(url_already_exists_message)
       end
 
       it "should add an error message if the description is too short" do
         article_with_too_short_description.valid?
-        expect(article_with_too_short_description.errors).
-          to eq([description_too_short_message])
+        expect(article_with_too_short_description.errors[:description]).
+          to eq(description_too_short_message)
       end
 
       it "should be able to add multiple error messages" do
         article_with_invalid_attributes.valid?
-        expect(article_with_invalid_attributes.errors).to include(
-          missing_fields_message,
-          invalid_url_message,
-          description_too_short_message
-        )
+        expect(article_with_invalid_attributes.errors).to eq({:title => missing_fields_message, :url => invalid_url_message, :description => description_too_short_message})
       end
     end
   end
